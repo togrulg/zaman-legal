@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zaman Deyir - sign-in result</title>
+<style>body{font-family:system-ui,Arial,sans-serif;max-width:720px;margin:48px auto;padding:0 20px;line-height:1.6;color:#1a1a1a}code{background:#f1f3f4;padding:2px 6px;border-radius:4px;word-break:break-all}</style>
+</head>
+<body>
+<h1>Zaman Deyir</h1>
+<p>This page is the return address after TikTok sign-in. It stores nothing and sends nothing anywhere.</p>
+<p id="out">No sign-in result in the address.</p>
+<script>
+  var q = new URLSearchParams(location.search);
+  var out = document.getElementById("out");
+  if (q.get("code")) {
+    out.innerHTML = "Authorization received. The address bar holds <code>code=...</code>: copy the whole address and give it to the owner of this tool, not to anyone else.";
+  } else if (q.get("error")) {
+    out.textContent = "TikTok returned an error: " + q.get("error") + (q.get("error_description") ? " - " + q.get("error_description") : "");
+  }
+</script>
+</body>
+</html>
